@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu de Convidados</title>
+    <title>Listas de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Meus Convidados</h1>
+        <h1>Listas de Convidados</h1>
         
+        <!-- Menu de navegação -->
         <div class="menu">
-            <button id="btn-0" class="ativo">Lista VIP</button>
-            <button id="btn-1">Lista Família</button>
-            <button id="btn-2">Lista Amigos</button>
+            <button onclick="mostrarLista(1)">Lista 1</button>
+            <button onclick="mostrarLista(2)">Lista 2</button>
+            <button onclick="mostrarLista(3)">Lista 3</button>
         </div>
-        
-        <div id="area-resultados" class="box">
-            <h2 id="titulo-lista">Resultados</h2>
-            
-            <h3>Nomes (Maiúsculas):</h3>
-            <ul id="lista-maiusculas"></ul>
-            
-            <h3>Quantos começam com "A"?</h3>
-            <p>Total: <strong id="contador-a">0</strong></p>
-            
-            <h3>Nomes longos (+ de 5 letras):</h3>
-            <ul id="lista-longos"></ul>
+
+        <!-- Listas de convidados -->
+        <div class="listas">
+            <div id="list1" class="list-content"></div>
+            <div id="list2" class="list-content"></div>
+            <div id="list3" class="list-content"></div>
+        </div>
+
+        <!-- Resultados filtrados -->
+        <div class="resultados">
+            <h2>Convidados que começam com "A":</h2>
+            <ul id="startsWithA"></ul>
+
+            <h2>Convidados com mais de 5 letras:</h2>
+            <ul id="moreThan5Letters"></ul>
         </div>
     </div>
 
