@@ -1,43 +1,67 @@
+/* style.css */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #ffffff;
+    background-color: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 800px;
 }
 
 h1 {
     text-align: center;
-    color: #2c3e50;
 }
 
-.box {
+.menu {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
     margin-top: 20px;
-    padding: 15px;
-    background: #eaf2f8;
-    border-left: 5px solid #3498db;
-    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.list-content {
+    display: none; /* Inicialmente, as listas estão ocultas */
+    margin-bottom: 20px;
 }
 
 ul {
     list-style-type: none;
-    padding: 0;
+    padding-left: 0;
 }
 
 li {
-    padding: 8px 0;
-    border-bottom: 1px solid #d5dbdb;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
 }
 
-li:last-child {
-    border-bottom: none;
+li:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.resultados h2 {
+    margin-top: 30px;
 }
