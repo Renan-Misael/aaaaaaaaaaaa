@@ -3,18 +3,28 @@ const convidados = [
   "Ana", "Carlos", "João", "Mariana", "André", "Lucas", "Pedro", "Amanda", "Roberta", "Alberto"
 ];
 
-// Função para imprimir todos os nomes em maiúsculas
+// Função para imprimir os nomes na tabela
 function printNames(names) {
   const tbody = document.querySelector("#convidados tbody");
   tbody.innerHTML = ''; // Limpa a tabela antes de adicionar os novos nomes
 
-  names.forEach(name => {
+  // Se não houver resultados para o filtro, exibe uma mensagem
+  if (names.length === 0) {
     const tr = document.createElement('tr');
     const td = document.createElement('td');
-    td.textContent = name.toUpperCase(); // Converte o nome para maiúsculas
+    td.textContent = 'Nenhum convidado encontrado';
+    td.colSpan = 1;  // Fazer o texto ocupar toda a largura da tabela
     tr.appendChild(td);
     tbody.appendChild(tr);
-  });
+  } else {
+    names.forEach(name => {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.textContent = name.toUpperCase(); // Converte o nome para maiúsculas
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    });
+  }
 }
 
 // Função para filtrar nomes que começam com a letra 'A'
@@ -34,19 +44,23 @@ function filterFiveLetters() {
 
 // Função para mostrar a lista conforme o tipo
 function showList(type) {
+  let filteredNames = [];
+
   switch(type) {
     case 'startsWithA':
-      printNames(filterStartsWithA());
+      filteredNames = filterStartsWithA();
       break;
     case 'allUppercase':
-      printNames(filterAllUppercase());
+      filteredNames = filterAllUppercase();
       break;
     case 'fiveLetters':
-      printNames(filterFiveLetters());
+      filteredNames = filterFiveLetters();
       break;
     default:
-      printNames(convidados); // Se for outro tipo, mostra todos os nomes
+      filteredNames = convidados;
   }
+
+  printNames(filteredNames);
 }
 
 // Mostrar todos os convidados ao carregar a página
