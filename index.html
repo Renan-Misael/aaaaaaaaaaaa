@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listas de Convidados</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Convidados</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Menu separado -->
-        <div class="menu">
-            <button onclick="mostrarLista(1)">Lista 1</button>
-            <button onclick="mostrarLista(2)">Lista 2</button>
-            <button onclick="mostrarLista(3)">Lista 3</button>
-        </div>
-
-        <!-- Área onde as listas de convidados serão mostradas -->
-        <div class="listas">
-            <div id="list1" class="list-content"></div>
-            <div id="list2" class="list-content"></div>
-            <div id="list3" class="list-content"></div>
-        </div>
-
-        <!-- Resultados filtrados -->
-        <div class="resultados">
-            <h2>Convidados que começam com "A":</h2>
-            <ul id="startsWithA"></ul>
-
-            <h2>Convidados com mais de 5 letras:</h2>
-            <ul id="moreThan5Letters"></ul>
-        </div>
+  <div class="container">
+    <h1>Lista de Convidados</h1>
+    <div class="menu">
+      <button onclick="showList('all')">Todos os Convidados</button>
+      <button onclick="showList('startsWithA')">Começam com "A"</button>
+      <button onclick="showList('moreThanFive')">Mais de 5 Letras</button>
     </div>
 
-    <script src="script.js"></script>
+    <table id="convidados" class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os nomes vão aparecer aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
