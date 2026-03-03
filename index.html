@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Convidados</title>
+    <title>Menu de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Gerenciamento de Convidados</h1>
+        <h1>Meus Convidados</h1>
         
-        <div class="box">
-            <h2>Nomes em Maiúsculas</h2>
+        <div class="menu">
+            <button id="btn-0" class="ativo">Lista VIP</button>
+            <button id="btn-1">Lista Família</button>
+            <button id="btn-2">Lista Amigos</button>
+        </div>
+        
+        <div id="area-resultados" class="box">
+            <h2 id="titulo-lista">Resultados</h2>
+            
+            <h3>Nomes (Maiúsculas):</h3>
             <ul id="lista-maiusculas"></ul>
-        </div>
-
-        <div class="box">
-            <h2>Estatísticas</h2>
-            <p>Nomes que começam com "A": <strong id="contador-a">0</strong></p>
-        </div>
-
-        <div class="box">
-            <h2>Nomes com mais de 5 letras</h2>
+            
+            <h3>Quantos começam com "A"?</h3>
+            <p>Total: <strong id="contador-a">0</strong></p>
+            
+            <h3>Nomes longos (+ de 5 letras):</h3>
             <ul id="lista-longos"></ul>
         </div>
     </div>
