@@ -1,25 +1,29 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Convidados</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <h1>Gerenciador de Convidados</h1>
+        <h1>Gerenciamento de Convidados</h1>
+        
+        <div class="box">
+            <h2>Nomes em Maiúsculas</h2>
+            <ul id="lista-maiusculas"></ul>
+        </div>
 
-        <section>
-            <h2>1. Todos os Convidados (MAIÚSCULO)</h2>
-            <ul id="lista-completa"></ul>
-            <p id="contagem-a" class="highlight"></p>
-        </section>
+        <div class="box">
+            <h2>Estatísticas</h2>
+            <p>Nomes que começam com "A": <strong id="contador-a">0</strong></p>
+        </div>
 
-        <section>
-            <h2>2. Convidados com 5 letras</h2>
-            <ul id="lista-cinco-letras"></ul>
-        </section>
+        <div class="box">
+            <h2>Nomes com mais de 5 letras</h2>
+            <ul id="lista-longos"></ul>
+        </div>
     </div>
 
     <script src="script.js"></script>
