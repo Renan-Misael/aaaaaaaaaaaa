@@ -1,134 +1,90 @@
-// 1. Criando a função range() exigida
-function range(tamanho) {
-    return [...Array(tamanho).keys()];
+// script.js
+
+// Listas de convidados
+const lista1 = ["Alice", "Ana", "Antonio", "Bruna"];
+const lista2 = ["Carlos", "Mariana", "Amanda", "João"];
+const lista3 = ["Eduardo", "Juliana", "Ricardo", "Ana"];
+
+let convidadosComA = [];
+let convidadosMaiorQueCinco = [];
+
+// Função que usa o range para iterar sobre as listas
+function range(inicio, fim) {
+    let arr = [];
+    for (let i = inicio; i < fim; i++) {
+        arr.push(i);
+    }
+    return arr;
 }
 
-// 2. As 3 listas de nomes
-const listaVip = ["Ana", "Bruno", "Amanda", "Carlos"];
-const listaFamilia = ["Beatriz", "Alberto", "Daniela", "Eduardo"];
-const listaAmigos = ["Alice", "Ferna// Criando a função range() exigida, já que o JS não a tem por padrão
-function range(tamanho) {
-    return [...Array(tamanho).keys()];
-}
-
-// 1. Criando as 3 listas de nomes
-const lista1 = ["Ana", "Bruno", "Amanda", "Carlos"];
-const lista2 = ["Beatriz", "Alberto", "Daniela", "Eduardo"];
-const lista3 = ["Alice", "Fernando", "Gabriel", "Adriana"];
-
-// Unindo as listas em uma só matriz
-const todasAsListas = [lista1, lista2, lista3];
-
-// Variáveis de controle
-let contadorA = 0;
-const nomesLongos = [];
-
-// Pegando os elementos do HTML onde vamos injetar os dados
-const ulMaiusculas = document.getElementById("lista-maiusculas");
-const spanContador = document.getElementById("contador-a");
-const ulLongos = document.getElementById("lista-longos");
-
-// 2. Usando o loop com a função range() para percorrer as listas
-const indicesDasListas = range(todasAsListas.length);
-
-for (let i of indicesDasListas) {
-    let listaAtual = todasAsListas[i];
-    let indicesDosNomes = range(listaAtual.length);
+// Função para imprimir os nomes nas listas e aplicar os filtros
+function imprimirLista(id, lista) {
+    const ul = document.createElement("ul");
     
-    for (let j of indicesDosNomes) {
-        let nome = listaAtual[j];
-        
-        // Adicionando o nome em MAIÚSCULAS na tela
-        let liMaiuscula = document.createElement("li");
-        liMaiuscula.textContent = nome.toUpperCase();
-        ulMaiusculas.appendChild(liMaiuscula);
-        
-        // 3. Contando nomes que começam com "A"
-        if (nome.toUpperCase().startsWith("A")) {
-            contadorA++;
+    // Limpa qualquer conteúdo anterior
+    document.getElementById(id).innerHTML = '';
+
+    // Loop para adicionar os nomes na lista
+    const indices = range(0, lista.length); // Usando o range()
+    for (let i of indices) {
+        const li = document.createElement("li");
+        li.textContent = lista[i].toUpperCase(); // Convertendo o nome para maiúsculas
+        ul.appendChild(li);
+
+        // Filtrando nomes que começam com "A"
+        if (lista[i][0].toUpperCase() === "A") {
+            convidadosComA.push(lista[i]);
         }
-        
-        // 4. Separando os nomes com mais de 5 letras
-        if (nome.length > 5) {
-            nomesLongos.push(nome);
+
+        // Filtrando nomes com mais de 5 letras
+        if (lista[i].length > 5) {
+            convidadosMaiorQueCinco.push(lista[i]);
         }
     }
+
+    document.getElementById(id).appendChild(ul);
 }
 
-// Exibindo o total de letras A na tela
-spanContador.textContent = contadorA;
-
-// Exibindo a lista de nomes longos na tela
-for (let k of range(nomesLongos.length)) {
-    let liLongo = document.createElement("li");
-    liLongo.textContent = nomesLongos[k];
-    ulLongos.appendChild(liLongo);
-}
-ndo", "Gabriel", "Adriana"];
-
-const todasAsListas = [listaVip, listaFamilia, listaAmigos];
-const nomesDasListas = ["Lista VIP", "Lista Família", "Lista Amigos"];
-
-// Capturando elementos do HTML
-const tituloLista = document.getElementById("titulo-lista");
-const ulMaiusculas = document.getElementById("lista-maiusculas");
-const spanContador = document.getElementById("contador-a");
-const ulLongos = document.getElementById("lista-longos");
-const botoes = document.querySelectorAll(".menu button");
-
-// 3. Função que faz o loop e imprime os dados
-function processarLista(indice) {
-    // Limpa a tela antes de mostrar a nova lista
-    ulMaiusculas.innerHTML = "";
-    ulLongos.innerHTML = "";
-    let contadorA = 0;
-    let nomesLongos = [];
-
-    tituloLista.textContent = "Resultados da " + nomesDasListas[indice];
-    let listaAtual = todasAsListas[indice];
+// Função para mostrar a lista selecionada e esconder as outras
+function mostrarLista(numero) {
+    // Ocultar todas as listas
+    const listas = document.querySelectorAll('.list-content');
+    listas.forEach(list => list.style.display = 'none');
     
-    // O Loop usando a função range()
-    for (let i of range(listaAtual.length)) {
-        let nome = listaAtual[i];
+    // Mostrar a lista escolhida
+    document.getElementById(`list${numero}`).style.display = 'block';
 
-        // Letras Maiúsculas
-        let li = document.createElement("li");
+    // Preencher a lista selecionada
+    if (numero === 1) {
+        imprimirLista('list1', lista1);
+    } else if (numero === 2) {
+        imprimirLista('list2', lista2);
+    } else if (numero === 3) {
+        imprimirLista('list3', lista3);
+    }
+
+    // Exibir resultados filtrados
+    exibirResultados();
+}
+
+// Função para exibir os resultados filtrados
+function exibirResultados() {
+    const startsWithAList = document.getElementById("startsWithA");
+    startsWithAList.innerHTML = ''; // Limpar a lista antes de adicionar
+    convidadosComA.forEach(nome => {
+        const li = document.createElement("li");
         li.textContent = nome.toUpperCase();
-        ulMaiusculas.appendChild(li);
+        startsWithAList.appendChild(li);
+    });
 
-        // Conta a letra "A"
-        if (nome.toUpperCase().startsWith("A")) {
-            contadorA++;
-        }
-
-        // Verifica se tem mais de 5 letras
-        if (nome.length > 5) {
-            nomesLongos.push(nome);
-        }
-    }
-
-    // Atualiza o contador na tela
-    spanContador.textContent = contadorA;
-
-    // Imprime a lista de nomes longos
-    for (let j of range(nomesLongos.length)) {
-        let liLongo = document.createElement("li");
-        liLongo.textContent = nomesLongos[j];
-        ulLongos.appendChild(liLongo);
-    }
+    const moreThan5LettersList = document.getElementById("moreThan5Letters");
+    moreThan5LettersList.innerHTML = ''; // Limpar a lista antes de adicionar
+    convidadosMaiorQueCinco.forEach(nome => {
+        const li = document.createElement("li");
+        li.textContent = nome.toUpperCase();
+        moreThan5LettersList.appendChild(li);
+    });
 }
 
-// 4. Conectando os botões à função
-botoes.forEach((botao, index) => {
-    botao.addEventListener("click", () => {
-        // Muda a cor do botão clicado
-        botoes.forEach(b => b.classList.remove("ativo"));
-        botao.classList.add("ativo");
-
-        // Roda a lógica para a lista escolhida
-        processarLista(index);
-    });
-});
-
-// Começa mostrando a primeira lista por padrão
-processarLista(0);
+// Inicialização: Mostra a Lista 1 ao carregar a página
+document.addEventListener("DOMContentLoaded", () => mostrarLista(1));
