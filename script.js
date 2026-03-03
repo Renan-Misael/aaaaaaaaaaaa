@@ -1,37 +1,58 @@
-// Nossa base de dados (Lista de Convidados)
-const convidados = ["Ana", "Bruno", "Alice", "Carlos", "Amanda", "Diego", "Elena", "Artur"];
+// Criando a função range() exigida, já que o JS não a tem por padrão
+function range(tamanho) {
+    return [...Array(tamanho).keys()];
+}
 
-// Selecionando os elementos do HTML
-const listaCompletaUI = document.getElementById('lista-completa');
-const listaCincoLetrasUI = document.getElementById('lista-cinco-letras');
-const contagemAUI = document.getElementById('contagem-a');
+// 1. Criando as 3 listas de nomes
+const lista1 = ["Ana", "Bruno", "Amanda", "Carlos"];
+const lista2 = ["Beatriz", "Alberto", "Daniela", "Eduardo"];
+const lista3 = ["Alice", "Fernando", "Gabriel", "Adriana"];
 
+// Unindo as listas em uma só matriz
+const todasAsListas = [lista1, lista2, lista3];
+
+// Variáveis de controle
 let contadorA = 0;
+const nomesLongos = [];
 
-// Parte 1 e 2: Loop para nomes em Maiúsculo e Contagem de nomes com 'A'
-convidados.forEach(nome => {
-    // Transformar em maiúsculo
-    const nomeMaiusculo = nome.toUpperCase();
+// Pegando os elementos do HTML onde vamos injetar os dados
+const ulMaiusculas = document.getElementById("lista-maiusculas");
+const spanContador = document.getElementById("contador-a");
+const ulLongos = document.getElementById("lista-longos");
+
+// 2. Usando o loop com a função range() para percorrer as listas
+const indicesDasListas = range(todasAsListas.length);
+
+for (let i of indicesDasListas) {
+    let listaAtual = todasAsListas[i];
+    let indicesDosNomes = range(listaAtual.length);
     
-    // Criar item da lista no HTML
-    const li = document.createElement('li');
-    li.textContent = nomeMaiusculo;
-    listaCompletaUI.appendChild(li);
-
-    // Verificar se começa com "A"
-    if (nomeMaiusculo.startsWith('A')) {
-        contadorA++;
+    for (let j of indicesDosNomes) {
+        let nome = listaAtual[j];
+        
+        // Adicionando o nome em MAIÚSCULAS na tela
+        let liMaiuscula = document.createElement("li");
+        liMaiuscula.textContent = nome.toUpperCase();
+        ulMaiusculas.appendChild(liMaiuscula);
+        
+        // 3. Contando nomes que começam com "A"
+        if (nome.toUpperCase().startsWith("A")) {
+            contadorA++;
+        }
+        
+        // 4. Separando os nomes com mais de 5 letras
+        if (nome.length > 5) {
+            nomesLongos.push(nome);
+        }
     }
-});
+}
 
-// Exibir a contagem total de nomes com A
-contagemAUI.textContent = `Total de nomes que começam com "A": ${contadorA}`;
+// Exibindo o total de letras A na tela
+spanContador.textContent = contadorA;
 
-// Parte 3: Filtrar nomes com exatamente 5 letras
-const convidadosCincoLetras = convidados.filter(nome => nome.length === 5);
-
-convidadosCincoLetras.forEach(nome => {
-    const li = document.createElement('li');
-    li.textContent = nome;
-    listaCincoLetrasUI.appendChild(li);
-});
+// Exibindo a lista de nomes longos na tela
+for (let k of range(nomesLongos.length)) {
+    let liLongo = document.createElement("li");
+    liLongo.textContent = nomesLongos[k];
+    ulLongos.appendChild(liLongo);
+}
