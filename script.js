@@ -22,32 +22,31 @@ function filterStartsWithA() {
   return convidados.filter(name => name[0].toUpperCase() === 'A');
 }
 
-// Função para filtrar nomes que têm mais de 5 letras
-function filterMoreThanFive() {
-  return convidados.filter(name => name.length > 5);
+// Função para filtrar nomes que estão em maiúsculas (tudo em maiúsculas)
+function filterAllUppercase() {
+  return convidados.filter(name => name === name.toUpperCase());
 }
 
-// Função de range (simulando um intervalo de 1 a N)
-function range(n) {
-  return [...Array(n).keys()].map(i => i + 1);
+// Função para filtrar nomes que têm exatamente 5 letras
+function filterFiveLetters() {
+  return convidados.filter(name => name.length === 5);
 }
 
-// Função para mostrar a tabela com base no tipo de filtro
+// Função para mostrar a lista conforme o tipo
 function showList(type) {
-  let filteredNames = [];
-
   switch(type) {
     case 'startsWithA':
-      filteredNames = filterStartsWithA();
+      printNames(filterStartsWithA());
       break;
-    case 'moreThanFive':
-      filteredNames = filterMoreThanFive();
+    case 'allUppercase':
+      printNames(filterAllUppercase());
+      break;
+    case 'fiveLetters':
+      printNames(filterFiveLetters());
       break;
     default:
-      filteredNames = convidados;
+      printNames(convidados); // Se for outro tipo, mostra todos os nomes
   }
-
-  printNames(filteredNames);
 }
 
 // Mostrar todos os convidados ao carregar a página
